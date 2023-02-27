@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import PlanetsContext from '../context/PlanetsContext';
+import filteredPlanets from '../helpers/filteredPlanets';
 import TablePlanetEntry from './TablePlanetEntry';
 
 function Table() {
-  const { planets } = useContext(PlanetsContext);
+  const { planets, searchFilterByName } = useContext(PlanetsContext);
   return (
     <table>
       <thead>
@@ -24,9 +25,16 @@ function Table() {
         </tr>
       </thead>
       <tbody>
-        {planets.length > 0 && planets.map((planet) => (
-          <TablePlanetEntry key={ planet.name } planet={ planet } />
-        ))}
+        {/* {planets.length > 0 && planets
+          .filter((planet) => planet.name.includes(searchFilterByName))
+          .map((planet) => (
+            <TablePlanetEntry key={ planet.name } planet={ planet } />
+          ))} */}
+        {planets.length > 0 && (
+          filteredPlanets(planets, searchFilterByName).map((planet) => (
+            <TablePlanetEntry key={ planet.name } planet={ planet } />
+          ))
+        )}
       </tbody>
     </table>
   );

@@ -5,10 +5,11 @@ import fetchPlanets from '../helpers/fetchPlanets';
 
 function PlanetsProvider({ children }) {
   const [planets, setPlanets] = useState([]);
+  const [searchFilterByName, setSearchFilterByName] = useState('');
 
   const values = useMemo(() => ({
-    planets, setPlanets,
-  }), [planets]);
+    planets, setPlanets, searchFilterByName, setSearchFilterByName,
+  }), [planets, searchFilterByName]);
 
   useEffect(() => {
     const fetchData = async () => {
