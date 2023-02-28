@@ -1,0 +1,19 @@
+.container-filters-comparison {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-filter-comparison {
+  align-items: center;
+  display: flex;
+  justify-content: start;
+}
+
+.container-filters-comparison p {
+  margin: 5px;
+}
+
+.container-filters-comparison button {
+  height: max-content;
+  width: max-content;
+}

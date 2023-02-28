@@ -1,16 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PlanetsContext from '../context/PlanetsContext';
 
+const INITIAL_OPTIONS = [
+  'population',
+  'orbital_period',
+  'diameter',
+  'rotation_period',
+  'surface_water'];
 function FilterNumerics() {
   const [column, setColumn] = useState('population');
   const [operator, setOperator] = useState('maior que');
   const [columnValue, setColumnValue] = useState('0');
-  const [columnOption, setColumnOptions] = useState([
-    'population',
-    'orbital_period',
-    'diameter',
-    'rotation_period',
-    'surface_water']);
+
+  const [columnOption, setColumnOptions] = useState(INITIAL_OPTIONS);
   const { searchFilterByComparison,
     setSearchFilterByComparison } = useContext(PlanetsContext);
 
@@ -37,8 +39,8 @@ function FilterNumerics() {
   };
 
   useEffect(() => {
-    setColumnOptions((prevColumnOption) => {
-      const currentComparisonFilters = prevColumnOption.reduce((acc, option) => {
+    setColumnOptions(() => {
+      const currentComparisonFilters = INITIAL_OPTIONS.reduce((acc, option) => {
         if (searchFilterByComparison.length > 0) {
           const filterShouldAdd = !(searchFilterByComparison
             .some((filter) => filter.column === option));
