@@ -6,10 +6,16 @@ import fetchPlanets from '../helpers/fetchPlanets';
 function PlanetsProvider({ children }) {
   const [planets, setPlanets] = useState([]);
   const [searchFilterByName, setSearchFilterByName] = useState('');
+  const [searchFilterByComparison, setSearchFilterByComparison] = useState([]);
 
   const values = useMemo(() => ({
-    planets, setPlanets, searchFilterByName, setSearchFilterByName,
-  }), [planets, searchFilterByName]);
+    planets,
+    setPlanets,
+    searchFilterByName,
+    setSearchFilterByName,
+    searchFilterByComparison,
+    setSearchFilterByComparison,
+  }), [planets, searchFilterByName, searchFilterByComparison]);
 
   useEffect(() => {
     const fetchData = async () => {

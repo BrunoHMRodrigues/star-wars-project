@@ -4,7 +4,10 @@ import filteredPlanets from '../helpers/filteredPlanets';
 import TablePlanetEntry from './TablePlanetEntry';
 
 function Table() {
-  const { planets, searchFilterByName } = useContext(PlanetsContext);
+  const {
+    planets,
+    searchFilterByName,
+    searchFilterByComparison } = useContext(PlanetsContext);
   return (
     <table>
       <thead>
@@ -25,15 +28,11 @@ function Table() {
         </tr>
       </thead>
       <tbody>
-        {/* {planets.length > 0 && planets
-          .filter((planet) => planet.name.includes(searchFilterByName))
-          .map((planet) => (
-            <TablePlanetEntry key={ planet.name } planet={ planet } />
-          ))} */}
         {planets.length > 0 && (
-          filteredPlanets(planets, searchFilterByName).map((planet) => (
-            <TablePlanetEntry key={ planet.name } planet={ planet } />
-          ))
+          filteredPlanets(planets, searchFilterByName, searchFilterByComparison)
+            .map((planet) => (
+              <TablePlanetEntry key={ planet.name } planet={ planet } />
+            ))
         )}
       </tbody>
     </table>
