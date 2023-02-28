@@ -1,12 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PlanetsContext from '../context/PlanetsContext';
+import INITIAL_OPTIONS from '../helpers/initialOptions';
 
-const INITIAL_OPTIONS = [
-  'population',
-  'orbital_period',
-  'diameter',
-  'rotation_period',
-  'surface_water'];
 function FilterNumerics() {
   const [column, setColumn] = useState('population');
   const [operator, setOperator] = useState('maior que');

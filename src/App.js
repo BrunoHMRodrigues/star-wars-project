@@ -4,6 +4,7 @@ import ButtonRemoveAllFilters from './components/ButtonRemoveAllFilters';
 import ComparisonFiltersSelected from './components/ComparisonFiltersSelected';
 import FilterName from './components/FilterName';
 import FilterNumerics from './components/FilterNumerics';
+import OrderTable from './components/OrderTable';
 import Table from './components/Table';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <div className="container-filters">
         <FilterNumerics />
         <ButtonRemoveAllFilters />
+        <OrderTable />
       </div>
       <ComparisonFiltersSelected />
       <Table />
