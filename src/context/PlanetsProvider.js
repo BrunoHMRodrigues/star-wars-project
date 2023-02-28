@@ -7,7 +7,6 @@ function PlanetsProvider({ children }) {
   const [planets, setPlanets] = useState([]);
   const [searchFilterByName, setSearchFilterByName] = useState('');
   const [searchFilterByComparison, setSearchFilterByComparison] = useState([]);
-  const [tableUpdate, setTableUpdate] = useState(false); // rever necessidade tableUpdate
 
   const values = useMemo(() => ({
     planets,
@@ -16,10 +15,11 @@ function PlanetsProvider({ children }) {
     setSearchFilterByName,
     searchFilterByComparison,
     setSearchFilterByComparison,
-    tableUpdate, // rever necessidade tableUpdate
-    setTableUpdate, // rever necessidade tableUpdate
-  }), [planets, searchFilterByName, searchFilterByComparison, tableUpdate]); // rever necessidade tableUpdate
+  }), [planets, searchFilterByName, searchFilterByComparison]);
 
+  useEffect(() => {
+    console.log(planets, 'atualizou');
+  }, [planets]);
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchPlanets();

@@ -7,12 +7,10 @@ function Table() {
   const {
     planets,
     searchFilterByName,
-    searchFilterByComparison,
-    tableUpdate } = useContext(PlanetsContext); // rever necessidade tableUpdate
+    searchFilterByComparison } = useContext(PlanetsContext);
 
   return (
-  // rever necessidade tableUpdate
-    <table key={ tableUpdate }>
+    <table>
       <thead>
         <tr>
           <th>Name</th>

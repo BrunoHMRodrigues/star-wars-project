@@ -6,7 +6,6 @@ function OrderTable() {
   const { planets, setPlanets } = useContext(PlanetsContext);
   const [columnToOrder, setColumnToOrder] = useState(INITIAL_OPTIONS[0]);
   const [orderRule, setOrderRule] = useState('');
-  const { setTableUpdate } = useContext(PlanetsContext); // rever necessidade tableUpdate
 
   const handleColumn = ({ target }) => {
     setColumnToOrder(target.value);
@@ -17,18 +16,19 @@ function OrderTable() {
   };
 
   function compareValues(a, b) {
-    if (orderRule === 'ASC') {
+    const MOVE_TO_LAST = -1;
+    if (b[columnToOrder] === 'unknown') {
+      return MOVE_TO_LAST;
+    } if (orderRule === 'ASC') {
       return Number(a[columnToOrder]) - Number(b[columnToOrder]);
     }
-    return Number(b) - Number(a);
+    return Number(b[columnToOrder]) - Number(a[columnToOrder]);
   }
 
   const handleOrderTable = () => {
-    const arrayPlanets = planets;
+    const arrayPlanets = [...planets];
     const orderedPlanets = arrayPlanets.sort((a, b) => compareValues(a, b));
-    console.log(orderedPlanets);
     setPlanets(orderedPlanets);
-    setTableUpdate(true); // rever necessidade tableUpdate
   };
 
   return (

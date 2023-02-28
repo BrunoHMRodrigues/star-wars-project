@@ -2,8 +2,8 @@ import React from 'react';
 import { act, render, screen, waitFor } from '@testing-library/react';
 import App from '../App';
 import PlanetsProvider from '../context/PlanetsProvider';
-import userEvent from '@testing-library/user-event';
-import planets from './data';
+// import userEvent from '@testing-library/user-event';
+import testData from '../../cypress/mocks/testData';
 
 describe('Verify if the page is rendering the elements as intended', () => {
   it('Verifying the inputbox', () => {
@@ -51,7 +51,7 @@ describe('Verify if the pages functionalities are working as intended', () => {
     jest.resetAllMocks();
     jest.spyOn(global, 'fetch');
     global.fetch.mockResolvedValue({
-      json: jest.fn().mockResolvedValue(planets),
+      json: jest.fn().mockResolvedValue(testData),
     })
     await act(async () => {
       render(
@@ -60,10 +60,6 @@ describe('Verify if the pages functionalities are working as intended', () => {
         </PlanetsProvider>
       );
     })
-    // waitFor(() => {
-    //   const getOnePlanet = screen.findByText('Tatooine');
-    //   expect(getOnePlanet).toBeInTheDocument();
-    // }, 10000)
     const getOnePlanet = await screen.findByText('Tatooine');
     expect(getOnePlanet).toBeInTheDocument();
     const inputSearch = screen.getByTestId('name-filter');
